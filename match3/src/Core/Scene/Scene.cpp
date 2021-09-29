@@ -9,11 +9,11 @@ Scene::~Scene()
 {
 }
 
-void Scene::Update()
+void Scene::Update(float dt)
 {
 }
 
-void Scene::Render()
+void Scene::Render(std::shared_ptr<sf::RenderWindow> window)
 {
 }
 

@@ -12,8 +12,17 @@
 #include <unordered_map>
 #include <unordered_set>
 
+//SFML
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/Network.hpp>
 #include <SFML/Audio.hpp>
+
+//entt
+#include <entt.hpp>
+
+//spdlog
+#include <spdlog/spdlog.h>
+
+//imgui

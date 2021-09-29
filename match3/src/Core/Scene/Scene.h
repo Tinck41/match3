@@ -5,12 +5,13 @@
 class Scene
 {
 private:
-	sf::RenderWindow window;
 
-	void Update();
-	void Render();
+	
 public:
 	Scene();
 	~Scene();
+
+	void Update(float dt);
+	void Render(std::shared_ptr<sf::RenderWindow> window);
 };
 

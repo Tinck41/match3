@@ -1,0 +1,6 @@
+[submodule "match3/vendor/imgui"]
+	path = match3/vendor/imgui
+	url = https://github.com/ocornut/imgui
+[submodule "match3/vendor/spdlog"]
+	path = match3/vendor/spdlog
+	url = https://github.com/gabime/spdlog

@@ -6,10 +6,9 @@ class GameLoop
 {
 private:
 	std::shared_ptr<sf::RenderWindow> m_Window = nullptr;
-	std::unique_ptr<SceneManager> m_SceneManager = nullptr;
 
-	sf::Clock deltaClock;
-	sf::Time dt;
+	sf::Clock m_DeltaClock;
+	sf::Time m_DeltaTime;
 
 	void Init();
 public:

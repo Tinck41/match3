@@ -14,9 +14,8 @@ GameLoop::~GameLoop()
 void GameLoop::Init()
 {
     m_Window = std::make_shared<sf::RenderWindow>(sf::VideoMode(800, 600), "match3");
-    m_SceneManager = std::make_unique<SceneManager>();
 
-    dt = deltaClock.restart();
+    m_DeltaTime = m_DeltaClock.restart();
 }
 
 void GameLoop::Run()
@@ -30,9 +29,9 @@ void GameLoop::Run()
                 m_Window->close();
         }
 
-        m_SceneManager->Update(dt.asSeconds());
-        m_SceneManager->Render(m_Window);
+        SceneManager::getInstance().Update(m_DeltaTime.asSeconds());
+        SceneManager::getInstance().Render(m_Window);
 
-        dt = deltaClock.restart();
+        m_DeltaTime = m_DeltaClock.restart();
     }
 }

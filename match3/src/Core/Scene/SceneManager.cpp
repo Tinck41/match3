@@ -10,7 +10,7 @@ SceneManager::~SceneManager()
 {
 }
 
-bool SceneManager::Load(const std::string& sceneName)
+bool SceneManager::LoadScene(const std::string& sceneName)
 {
 	return false;
 }
@@ -22,7 +22,9 @@ void SceneManager::Update(float dt)
 
 void SceneManager::Render(std::shared_ptr<sf::RenderWindow> window)
 {
+	window->clear();
 	m_CurScene->Render(window);
+	window->display();
 }
 
 void SceneManager::Save()

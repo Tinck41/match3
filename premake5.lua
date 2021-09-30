@@ -35,7 +35,8 @@ project "match3"
         "%{prj.name}/vendor/EnTT/include",
         "%{prj.name}/vendor/SFML-2.5.1/include",
         "%{prj.name}/vendor/imgui/include",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/vendor/json/include"
     }
 
     libdirs

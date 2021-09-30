@@ -1,6 +1,6 @@
 # match3
 
-This project was made simply for practice mostly in premake and some libs. However it is still a common match3 game and editor whick you can install and play around, set youw own combination for match and whatever.
+This project was made simply for practice mostly in premake and some libs. However it is still a common match3 game and editor which you can install and play around, set youw own combination for match and whatever.
 
 ## Features
 - Define combination for match
@@ -14,8 +14,10 @@ match3 uses a number of open source projects to work properly:
 - [SFML] - SFML is a simple, fast, cross-platform and object-oriented multimedia API.
 - [spdlog] - Very fast, header-only/compiled, C++ logging library.
 - [ImGui] - Dear ImGui is a bloat-free graphical user interface library for C++.
+- [json] - Lib for serializing and deserializing json files in C++.
 
    [EnTT]: <https://github.com/skypjack/entt>
    [spdlog]: <https://github.com/gabime/spdlog>
    [ImGui]: <https://github.com/ocornut/imgui>
    [SFML]: <https://github.com/SFML/SFML>
+   [json]: <https://github.com/nlohmann/json>

@@ -1,6 +1,6 @@
 #include "m3pch.h"
 
-#include "Core/GameLoop.h"
+#include "GameLoop.h"
 
 int main()
 {

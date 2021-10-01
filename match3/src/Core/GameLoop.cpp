@@ -29,8 +29,11 @@ void GameLoop::Run()
                 m_Window->close();
         }
 
-        SceneManager::getInstance().Update(m_DeltaTime.asSeconds());
-        SceneManager::getInstance().Render(m_Window);
+
+        m_ActiveScene.Update(m_DeltaTime.asSeconds());
+        m_Window->clear();
+        m_ActiveScene.Render(m_Window);
+        m_Window->display();
 
         m_DeltaTime = m_DeltaClock.restart();
     }

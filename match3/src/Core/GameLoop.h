@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Scene/SceneManager.h"
+#include "Core/Scene/Scene.h"
 
 class GameLoop 
 {
@@ -9,6 +9,8 @@ private:
 
 	sf::Clock m_DeltaClock;
 	sf::Time m_DeltaTime;
+
+	Scene m_ActiveScene;
 
 	void Init();
 public:

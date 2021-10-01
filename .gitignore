@@ -15,7 +15,6 @@
 *.so
 *.dylib
 *.dll
-!openal32.dll
 
 # Fortran module files
 *.mod

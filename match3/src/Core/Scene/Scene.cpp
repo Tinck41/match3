@@ -93,6 +93,13 @@ bool Scene::Load(const std::string& sceneName)
 
 			m_Registry.emplace<GridComponent>(entity, gridComponent);
 		}
+
+		if (components.contains("SpriteComponent"))
+		{
+			SpriteComponent spriteComponent;
+
+			m_Registry.emplace<SpriteComponent>(entity, spriteComponent);
+		}
 	}
 
 	return true;
@@ -117,7 +124,7 @@ void Scene::Update(float dt)
 	}
 }
 
-void Scene::Render(std::shared_ptr<sf::RenderWindow> window)
+void Scene::Render(sf::RenderWindow& window)
 {
 	for (auto system : m_Systems)
 	{

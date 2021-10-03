@@ -13,5 +13,5 @@ public:
 	~System() = default;
 
 	virtual void Update(float dt, entt::registry& reg) = 0;
-	virtual void Render(std::shared_ptr<sf::RenderWindow> window, entt::registry& reg) = 0;
+	virtual void Render(sf::RenderWindow& window, entt::registry& reg) = 0;
 };

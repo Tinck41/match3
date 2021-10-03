@@ -12,6 +12,6 @@ public:
 	~GridSystem() = default;
 
 	virtual void Update(float dt, entt::registry& reg) override;
-	virtual void Render(std::shared_ptr<sf::RenderWindow> window, entt::registry& reg) override;
+	virtual void Render(sf::RenderWindow& window, entt::registry& reg) override;
 
 };

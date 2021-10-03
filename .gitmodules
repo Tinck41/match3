@@ -4,3 +4,6 @@
 [submodule "match3/vendor/spdlog"]
 	path = match3/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "match3/vendor/imguiSFML"]
+	path = match3/vendor/imguiSFML
+	url = https://github.com/eliasdaler/imgui-sfml

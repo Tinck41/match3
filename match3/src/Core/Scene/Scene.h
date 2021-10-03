@@ -20,6 +20,6 @@ public:
 	~Scene();
 
 	void Update(float dt);
-	void Render(std::shared_ptr<sf::RenderWindow> window);
+	void Render(sf::RenderWindow& window);
 };
 

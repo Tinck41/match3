@@ -11,6 +11,7 @@ workspace "match3"
 outputdir = "%{cfg.buildcfg}_%{cfg.system}-%{cfg.arhictecture}" 
 
 include "match3/vendor/imgui"
+include "match3/vendor/imguiSFML"
 
 project "match3"
     location "match3"
@@ -34,7 +35,8 @@ project "match3"
         "%{prj.name}/src",
         "%{prj.name}/vendor/EnTT/include",
         "%{prj.name}/vendor/SFML-2.5.1/include",
-        "%{prj.name}/vendor/imgui/include",
+        "%{prj.name}/vendor/imgui",
+        "%{prj.name}/vendor/imguiSFML",
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/vendor/json/include"
     }
@@ -57,7 +59,8 @@ project "match3"
         "vorbis.lib",
         "ogg.lib",
         "ws2_32.lib",
-        "ImGui"
+        "ImGui",
+        "ImGui-SFML"
     }
 
     filter "system:windows"
@@ -78,7 +81,7 @@ project "match3"
             "sfml-graphics-s-d.lib",
             "sfml-network-s-d.lib",
             "sfml-system-s-d.lib",
-            "sfml-window-s-d.lib"
+            "sfml-window-s-d.lib",
         }
     
     filter "configurations:Release"

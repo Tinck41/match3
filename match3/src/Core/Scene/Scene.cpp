@@ -117,7 +117,7 @@ void Scene::Update(float dt)
 	}
 }
 
-void Scene::Render(std::shared_ptr<sf::RenderWindow> window)
+void Scene::Render(sf::RenderWindow& window)
 {
 	for (auto system : m_Systems)
 	{

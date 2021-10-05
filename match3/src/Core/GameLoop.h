@@ -11,7 +11,7 @@ private:
 	sf::Clock m_DeltaClock;
 	sf::Time m_DeltaTime;
 
-	Scene m_ActiveScene;
+	std::shared_ptr<Scene> m_ActiveScene = nullptr;
 
 	std::unique_ptr<EditorLayer> m_EditorLayer = nullptr;
 

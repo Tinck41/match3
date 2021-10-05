@@ -17,7 +17,10 @@ GameLoop::~GameLoop()
 void GameLoop::Init()
 {
     m_Window.create(sf::VideoMode(800, 600), "match3");
+    m_ActiveScene = std::make_shared<Scene>();
+
     m_EditorLayer = std::make_unique<EditorLayer>();
+    m_EditorLayer->SetScene(m_ActiveScene);
 
     m_DeltaTime = m_DeltaClock.restart();
 }
@@ -39,14 +42,12 @@ void GameLoop::Run()
 
         ImGui::SFML::Update(m_Window, m_DeltaTime);
 
-        ImGui::Begin("Hello, world!");
-        ImGui::Button("Look at this pretty button");
-        ImGui::End();
-
         m_EditorLayer->Update(m_DeltaTime.asSeconds());
-        m_ActiveScene.Update(m_DeltaTime.asSeconds());
+        m_ActiveScene->Update(m_DeltaTime.asSeconds());
+
         m_Window.clear();
-        m_ActiveScene.Render(m_Window);
+        m_EditorLayer->Render(m_Window);
+        m_ActiveScene->Render(m_Window);
         ImGui::SFML::Render(m_Window);
         m_Window.display();
 

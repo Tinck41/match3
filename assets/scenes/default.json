@@ -14,8 +14,11 @@
                         "rows": 6,
                         "cellSize": [ 50.0, 50.0 ]
                     },
-                    "match3FieldComponent": {
+                    "Match3FieldComponent": {
 
+                    },
+                    "SpriteComponent": {
+                        
                     }
                 }
             ]

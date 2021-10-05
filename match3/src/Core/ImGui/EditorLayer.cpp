@@ -1,7 +1,8 @@
 #include "m3pch.h"
 #include "EditorLayer.h"
 
-//#include <imgui.h> 
+#include <imgui.h> 
+#include <imgui-SFML.h>
 
 EditorLayer::EditorLayer()
 {
@@ -10,62 +11,97 @@ EditorLayer::EditorLayer()
 
 EditorLayer::~EditorLayer()
 {
+
+}
+
+void EditorLayer::SetScene(std::shared_ptr<Scene> scene)
+{
+    m_ActiveScene = scene;
 }
 
 void EditorLayer::Init()
 {
-//    ImGui::CreateContext();
-//    ImGui::StyleColorsDark();
-//
-//    ImGuiIO& io = ImGui::GetIO();
-//    ImFont* font1 = io.Fonts->AddFontDefault();
-//    io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
-//    io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-//
-//    // init keyboard mapping
-//    io.KeyMap[ImGuiKey_Tab] = sf::Keyboard::Tab;
-//    io.KeyMap[ImGuiKey_LeftArrow] = sf::Keyboard::Left;
-//    io.KeyMap[ImGuiKey_RightArrow] = sf::Keyboard::Right;
-//    io.KeyMap[ImGuiKey_UpArrow] = sf::Keyboard::Up;
-//    io.KeyMap[ImGuiKey_DownArrow] = sf::Keyboard::Down;
-//    io.KeyMap[ImGuiKey_PageUp] = sf::Keyboard::PageUp;
-//    io.KeyMap[ImGuiKey_PageDown] = sf::Keyboard::PageDown;
-//    io.KeyMap[ImGuiKey_Home] = sf::Keyboard::Home;
-//    io.KeyMap[ImGuiKey_End] = sf::Keyboard::End;
-//    io.KeyMap[ImGuiKey_Insert] = sf::Keyboard::Insert;
-//#ifdef ANDROID
-//    io.KeyMap[ImGuiKey_Backspace] = sf::Keyboard::Delete;
-//#else
-//    io.KeyMap[ImGuiKey_Delete] = sf::Keyboard::Delete;
-//    io.KeyMap[ImGuiKey_Backspace] = sf::Keyboard::BackSpace;
-//#endif
-//    io.KeyMap[ImGuiKey_Space] = sf::Keyboard::Space;
-//    io.KeyMap[ImGuiKey_Enter] = sf::Keyboard::Return;
-//    io.KeyMap[ImGuiKey_Escape] = sf::Keyboard::Escape;
-//    io.KeyMap[ImGuiKey_A] = sf::Keyboard::A;
-//    io.KeyMap[ImGuiKey_C] = sf::Keyboard::C;
-//    io.KeyMap[ImGuiKey_V] = sf::Keyboard::V;
-//    io.KeyMap[ImGuiKey_X] = sf::Keyboard::X;
-//    io.KeyMap[ImGuiKey_Y] = sf::Keyboard::Y;
-//    io.KeyMap[ImGuiKey_Z] = sf::Keyboard::Z;
+
 
 }
 
 void EditorLayer::Update(float dt)
 {
-    //ImGuiIO& io = ImGui::GetIO();
-    //io.DisplaySize = ImVec2(800.f, 600.f);
-    //io.DeltaTime = dt > 0.f ? (dt - m_Time) : (1.f / 60.f);
-    //m_Time = dt;
 
-    //ImGui::NewFrame();
-
-    //static bool show = true;
-    //ImGui::ShowDemoWindow(&show);
-
-    //ImGui::Render();
 }
 
-void EditorLayer::Render(std::shared_ptr<sf::RenderWindow> window)
+void EditorLayer::Render(sf::RenderWindow& window)
 {
+    ImGui::Begin("match3");
+
+    auto& reg = m_ActiveScene->GetRegistry();
+
+    //Transfrom Component
+    if (ImGui::TreeNode("Transform"))
+    {
+        auto view = reg.view<TransformComponent>();
+        for (auto e : view)
+        {
+            auto& transform = reg.get<TransformComponent>(e);
+            float value[2] = { transform.translation.x, transform.translation.y };
+
+            if (ImGui::DragFloat2("XY", value, 0.1f))
+            {
+                transform.translation.x = (value[0]);
+                transform.translation.y = (value[1]);
+            }
+        }
+
+        ImGui::TreePop();
+    }
+
+    //Grid Component
+    if (ImGui::TreeNode("Grid")) {
+
+        auto view = reg.view<GridComponent>();
+        for (auto e : view)
+        {
+            auto& grid = reg.get<GridComponent>(e);
+            int value[2] = { grid.rows, grid.columns };
+            float cell[2] = { grid.cellSize.x, grid.cellSize.y };
+
+            if (ImGui::DragInt2("XY", value, 0.1f))
+            {
+                grid.rows = (value[0]);
+                grid.columns = (value[1]);
+            }
+
+            if (ImGui::DragFloat2("Cell size", cell, 0.1f))
+            {
+                grid.cellSize.x = (cell[0]);
+                grid.cellSize.y = (cell[1]);
+            }
+        }
+
+        ImGui::TreePop();
+    }
+
+    //Sprite Component
+    if (ImGui::TreeNode("Sprite")) {
+
+        auto view = reg.view<SpriteComponent>();
+        for (auto e : view)
+        {
+            auto& sprite = reg.get<SpriteComponent>(e);
+            float value[4] = { sprite.color.r / 255.f, sprite.color.g / 255.f, sprite.color.b / 255.f, sprite.color.a / 255.f };
+
+            if (ImGui::ColorEdit4("RGBA", value, 0.1f))
+            {
+                sprite.color.r = (value[0] * 255.f);
+                sprite.color.g = (value[1] * 255.f);
+                sprite.color.b = (value[2] * 255.f);
+                sprite.color.a = (value[3] * 255.f);
+            }
+        }
+
+        ImGui::TreePop();
+    }
+
+    ImGui::End();
+
 }

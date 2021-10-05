@@ -32,15 +32,22 @@ void GridSystem::Render(sf::RenderWindow& window, entt::registry& reg)
 	auto group = reg.group<GridComponent, TransformComponent>();
 	for (auto e : group)
 	{
-		auto [grid, transform] = group.get< GridComponent, TransformComponent>(e);
+		auto [grid, transform] = group.get<GridComponent, TransformComponent>(e);
 
 		for (size_t i = 0; i <= grid.columns; i++)
 		{
 			sf::Vertex line[] =
 			{
 				sf::Vertex(sf::Vector2f(transform.translation.x + grid.cellSize.x * i, transform.translation.y)),
-				sf::Vertex(sf::Vector2f(transform.translation.x + grid.cellSize.x * i, transform.translation.y + grid.cellSize.x * grid.rows))
+				sf::Vertex(sf::Vector2f(transform.translation.x + grid.cellSize.x * i, transform.translation.y + grid.cellSize.y * grid.rows))
 			};
+
+			if (reg.any_of<SpriteComponent>(e)) {
+				auto sprite = reg.get<SpriteComponent>(e);
+
+				line[0].color = sprite.color;
+				line[1].color = sprite.color;
+			}
 
 			window.draw(line, 2, sf::Lines);
 		}
@@ -52,6 +59,13 @@ void GridSystem::Render(sf::RenderWindow& window, entt::registry& reg)
 				sf::Vertex(sf::Vector2f(transform.translation.x, transform.translation.y + grid.cellSize.y * i)),
 				sf::Vertex(sf::Vector2f(transform.translation.x + grid.cellSize.x * grid.columns, transform.translation.y + grid.cellSize.y * i))
 			};
+
+			if (reg.any_of<SpriteComponent>(e)) {
+				auto sprite = reg.get<SpriteComponent>(e);
+
+				line[0].color = sprite.color;
+				line[1].color = sprite.color;
+			}
 
 			window.draw(line, 2, sf::Lines);
 		}

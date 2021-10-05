@@ -21,4 +21,6 @@ struct GridComponent {
 struct SpriteComponent {
 	std::string source = "";
 	sf::Sprite sprite;
+
+	sf::Color color{ 15, 200, 0, 255 };
 };

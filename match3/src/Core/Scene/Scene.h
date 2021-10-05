@@ -19,6 +19,8 @@ public:
 	Scene();
 	~Scene();
 
+	entt::registry& GetRegistry() { return m_Registry; }
+
 	void Update(float dt);
 	void Render(sf::RenderWindow& window);
 };

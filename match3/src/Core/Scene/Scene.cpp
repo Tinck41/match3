@@ -93,6 +93,13 @@ bool Scene::Load(const std::string& sceneName)
 
 			m_Registry.emplace<GridComponent>(entity, gridComponent);
 		}
+
+		if (components.contains("SpriteComponent"))
+		{
+			SpriteComponent spriteComponent;
+
+			m_Registry.emplace<SpriteComponent>(entity, spriteComponent);
+		}
 	}
 
 	return true;
